@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { BasicPic } from "src/assets/instapics";
+import { BasicPic } from "src/types";
 // TODO: typecheck template (image.id)
 
 @Component

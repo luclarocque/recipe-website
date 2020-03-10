@@ -1,20 +1,4 @@
-export enum FoodTag {
-  Breakfast,
-  Lunch,
-  Dinner,
-  Snack,
-  Dessert
-}
-
-export interface BasicPic {
-  url: string;
-  id: number;
-  name: string;
-}
-
-export interface InstaPic extends BasicPic {
-  tags: FoodTag[];
-}
+import {InstaPic, FoodTag} from "../types"
 
 export const pics: InstaPic[] = [
   {

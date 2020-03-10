@@ -1,31 +1,25 @@
 <template>
-  <div class="homepage-container">
+  <div>
     <h1>Recipeebs</h1>
     <div class="meal-button-container">
-      <button class="meal-button" @click="changeSelection(FoodTag.Breakfast)">
-        Breakfast
-      </button>
-      |
-      <button class="meal-button" @click="changeSelection(FoodTag.Lunch)">
-        Lunch
-      </button>
-      |
-      <button class="meal-button" @click="changeSelection(FoodTag.Dinner)">
-        Dinner
-      </button>
-      |
-      <button class="meal-button" @click="changeSelection(FoodTag.Snack)">
-        Snacks
-      </button>
+      <div v-for="(button, index) in buttons" :key="button.name">
+        <button
+          v-bind:class="button.class"
+          v-on:click="changeSelection(button.foodtag)"
+        >{{ button.name }}</button>
+        {{ index !== buttons.length - 1 ? "|" : "" }}
+      </div>
     </div>
     <ImageGallery :images="images" />
   </div>
 </template>
 
+
 <script lang="ts">
 import ImageGallery from "@/components/ImageGallery.vue";
 // pics
-import pics, { FoodTag } from "../assets/instapics";
+import pics from "../assets/instapics";
+import { FoodTag, MenuButton, MenuButtonClass } from "../types";
 
 function filterFoods(foodtag: FoodTag) {
   return pics.filter(pic => {
@@ -33,7 +27,33 @@ function filterFoods(foodtag: FoodTag) {
   });
 }
 
+// TODO: fix spacing between rows
+// TODO: fix jerking when selecting
+
 let currentSelection: FoodTag | null = null;
+
+const buttons: MenuButton[] = [
+  {
+    name: "Breakfast",
+    foodtag: FoodTag.Breakfast,
+    class: MenuButtonClass.Default
+  },
+  {
+    name: "Lunch",
+    foodtag: FoodTag.Lunch,
+    class: MenuButtonClass.Default
+  },
+  {
+    name: "Dinner",
+    foodtag: FoodTag.Dinner,
+    class: MenuButtonClass.Default
+  },
+  {
+    name: "Snacks",
+    foodtag: FoodTag.Snack,
+    class: MenuButtonClass.Default
+  }
+];
 
 export default {
   name: "Home",
@@ -43,16 +63,22 @@ export default {
   data: function() {
     return {
       images: pics,
-      FoodTag // equiv to FoodTag: FoodTag
+      FoodTag,
+      buttons
       // TODO: find different way to pass in FoodTag
     };
   },
   methods: {
-    changeSelection: function changeSelection(foodtag: FoodTag) {
+    changeSelection: function(foodtag: FoodTag) {
       currentSelection = foodtag;
       this.images =
         currentSelection !== null ? filterFoods(currentSelection) : pics;
-      // console.log({ currentSelection});
+      this.buttons.forEach(button => {
+        button.class =
+          button.foodtag === foodtag
+            ? MenuButtonClass.Selected
+            : MenuButtonClass.Default;
+      });
     }
   }
   // computed: {
@@ -60,6 +86,7 @@ export default {
   // }
 };
 </script>
+
 
 <style lang="less">
 button {
@@ -79,19 +106,6 @@ button {
   // -moz-appearance: none;
 }
 
-button:hover,
-button:focus {
-  font-weight: 900;
-}
-
-button:focus {
-  outline: 1px solid #fff; // invisible outline
-}
-
-button:active {
-  transform: scale(1.08);
-}
-
 .meal-button-container {
   min-width: 30em;
   width: 100%;
@@ -104,6 +118,22 @@ button:active {
 
 .meal-button {
   width: 7em;
+  &:hover {
+    font-weight: 900;
+  }
+  &:focus {
+    outline: 1px solid #fff; // invisible outline
+  }
+  &:active {
+    transform: scale(1.08);
+  }
+}
+
+.meal-button-selected {
+  font-weight: 900;
+  &:focus {
+    outline: 1px solid #fff; // invisible outline
+  }
 }
 
 #app {
