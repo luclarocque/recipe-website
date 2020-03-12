@@ -1,8 +1,10 @@
 <template>
-  <div class="image-container">
-    <div class="image-and-text" v-for="image in images" :key="image.id">
-      <img class="image" :src="image.url" />
-      <div class="title image-text">{{ image.name }}</div>
+  <div class="container">
+    <div class="image-container">
+      <div class="image-and-text" v-for="(image, index) in images" :key="index">
+        <img class="image" :src="image.url" />
+        <div class="title image-text">{{ image.name }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -19,10 +21,22 @@ export default class ImageGallery extends Vue {
 </script>
 
 <style lang="less">
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;  
+}
+
 .image-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
+  box-sizing: content-box; /* So the width will be 100% + 17px */
 }
 
 .image-and-text {
@@ -33,20 +47,18 @@ export default class ImageGallery extends Vue {
   overflow-wrap: normal;
 }
 
-.image-and-text .image {
-  padding: 1px;
-  color: #fff;
-  width: auto;
-  height: 15em;
-  // transition: all 300ms ease-out;
-  // opacity: 0;
-}
-
 .image-and-text:hover .image {
   opacity: 0.4;
 }
 
-.image-and-text .image-text {
+.image {
+  padding: 1px;
+  color: #fff;
+  width: auto;
+  height: 15em;
+}
+
+.image-text {
   font-size: 1.3em;
   color: rgb(32, 32, 32);
   -webkit-text-stroke: 1px;

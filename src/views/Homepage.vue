@@ -10,20 +10,18 @@
         {{ index !== buttons.length - 1 ? "|" : "" }}
       </div>
     </div>
-    <ImageGallery :images="images" />
+    <ImageGallery :images="basicpics" />
   </div>
 </template>
 
-
 <script lang="ts">
 import ImageGallery from "@/components/ImageGallery.vue";
-// pics
-import pics from "../assets/instapics";
-import { FoodTag, MenuButton, MenuButtonClass } from "../types";
+import recipes from "../assets/recipes";
+import { FoodTag, MenuButton, MenuButtonClass, Recipe, BasicPic } from "../types";
 
 function filterFoods(foodtag: FoodTag) {
-  return pics.filter(pic => {
-    return pic.tags.includes(foodtag);
+  return recipes.filter(recipe => {
+    return recipe.tags.includes(foodtag);
   });
 }
 
@@ -55,6 +53,13 @@ const buttons: MenuButton[] = [
   }
 ];
 
+function recipeToBasicPic(recipe: Recipe): BasicPic {
+  return {
+    url: recipe.images[0],
+    name: recipe.name
+  };
+}
+
 export default {
   name: "Home",
   components: {
@@ -62,7 +67,7 @@ export default {
   },
   data: function() {
     return {
-      images: pics,
+      basicpics: recipes.map(recipeToBasicPic),
       FoodTag,
       buttons
       // TODO: find different way to pass in FoodTag
@@ -71,8 +76,9 @@ export default {
   methods: {
     changeSelection: function(foodtag: FoodTag) {
       currentSelection = foodtag;
-      this.images =
-        currentSelection !== null ? filterFoods(currentSelection) : pics;
+      const filteredRecipes =
+        currentSelection !== null ? filterFoods(currentSelection) : recipes;
+      this.basicpics = filteredRecipes.map(recipeToBasicPic);
       this.buttons.forEach(button => {
         button.class =
           button.foodtag === foodtag
@@ -87,8 +93,11 @@ export default {
 };
 </script>
 
-
 <style lang="less">
+// body {
+//   overflow: hidden;  // uncomment to
+// }
+
 button {
   display: inline-block;
   border: none;
@@ -107,8 +116,6 @@ button {
 }
 
 .meal-button-container {
-  min-width: 30em;
-  width: 100%;
   display: flex;
   align-items: baseline;
   justify-content: center;
@@ -117,7 +124,7 @@ button {
 }
 
 .meal-button {
-  width: 7em;
+  width: 132px;
   &:hover {
     font-weight: 900;
   }
@@ -131,30 +138,15 @@ button {
 
 .meal-button-selected {
   font-weight: 900;
+  width: 132px;
+  &:hover {
+    font-weight: 900;
+  }
   &:focus {
     outline: 1px solid #fff; // invisible outline
   }
-}
-
-#app {
-  // # for id
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  &:active {
+    transform: scale(1.08);
   }
 }
 </style>
