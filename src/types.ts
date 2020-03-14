@@ -26,11 +26,12 @@ interface Ingredient {
 export interface BasicPic {
   url: string;
   name: string;
+  id: string;
 }
 
 export interface Recipe {
   images: string[];
-  id: number;
+  id: string;
   name: string;
   tags: FoodTag[];
   ingredients: Ingredient[];

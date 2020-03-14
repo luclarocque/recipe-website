@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="image-container">
-      <div class="image-and-text" v-for="(image, index) in images" :key="index">
+      <router-link :to="{ name: 'Recipe', params: {id: image.id} }" class="image-and-text" v-for="image in images" :key="image.id">
         <img class="image" :src="image.url" />
         <div class="title image-text">{{ image.name }}</div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default class ImageGallery extends Vue {
 .container {
   width: 100%;
   height: 100%;
-  overflow: hidden;  
+  overflow: hidden;
 }
 
 .image-container {

@@ -6,7 +6,9 @@
         <button
           v-bind:class="button.class"
           v-on:click="changeSelection(button.foodtag)"
-        >{{ button.name }}</button>
+        >
+          {{ button.name }}
+        </button>
         {{ index !== buttons.length - 1 ? "|" : "" }}
       </div>
     </div>
@@ -17,7 +19,13 @@
 <script lang="ts">
 import ImageGallery from "@/components/ImageGallery.vue";
 import recipes from "../assets/recipes";
-import { FoodTag, MenuButton, MenuButtonClass, Recipe, BasicPic } from "../types";
+import {
+  FoodTag,
+  MenuButton,
+  MenuButtonClass,
+  Recipe,
+  BasicPic
+} from "../types";
 
 function filterFoods(foodtag: FoodTag) {
   return recipes.filter(recipe => {
@@ -56,7 +64,8 @@ const buttons: MenuButton[] = [
 function recipeToBasicPic(recipe: Recipe): BasicPic {
   return {
     url: recipe.images[0],
-    name: recipe.name
+    name: recipe.name,
+    id: recipe.id
   };
 }
 
