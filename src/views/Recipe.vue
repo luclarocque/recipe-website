@@ -2,28 +2,28 @@
   <div>
     <h1>{{ recipe.name }}</h1>
     <div class="recipe-container">
-      <img class="recipe-image" :src=recipe.images[0] />
+      <img class="recipe-image" :src="recipe.images[0]" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import recipes from "../assets/recipes";
-import { Recipe } from '../types';
+import { Recipe } from "../types";
 
 export default {
   name: "Home",
   components: {},
   // data: function() {
   //   return {
-  //     recipe,  
+  //     recipe,
   //   };
   // },
   // methods: {
   // },
   computed: {
     recipe() {
-      return recipes.filter(rec => rec.id === this.$route.params.id)[0]
+      return recipes.filter(rec => rec.id === this.$route.params.id)[0];
     }
   }
 };

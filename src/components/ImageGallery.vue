@@ -1,7 +1,12 @@
 <template>
   <div class="container">
     <div class="image-container">
-      <router-link :to="{ name: 'Recipe', params: {id: image.id} }" class="image-and-text" v-for="image in images" :key="image.id">
+      <router-link
+        :to="{ name: 'Recipe', params: { id: image.id } }"
+        class="image-and-text"
+        v-for="image in images"
+        :key="image.id"
+      >
         <img class="image" :src="image.url" />
         <div class="title image-text">{{ image.name }}</div>
       </router-link>
