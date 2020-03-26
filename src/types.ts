@@ -19,7 +19,7 @@ export enum FoodTag {
 
 interface Ingredient {
   name: string;
-  quantity: number;
+  quantity: number | string;
   measurement: string;
 }
 
@@ -35,4 +35,5 @@ export interface Recipe {
   name: string;
   tags: FoodTag[];
   ingredients: Ingredient[];
+  directions: string[];
 }

@@ -19,6 +19,11 @@ export const recipes: Recipe[] = [
         quantity: 3,
         measurement: "mL"
       }
+    ],
+    directions: [
+      "Shuck oysters",
+      "Bop",
+      "Bop again"
     ]
   },
   {
@@ -30,15 +35,23 @@ export const recipes: Recipe[] = [
     tags: [FoodTag.Lunch, FoodTag.Breakfast],
     ingredients: [
       {
-        name: "oyster",
-        quantity: 4,
+        name: "tomatoes",
+        quantity: 5,
         measurement: ""
       },
       {
-        name: "lime juice",
-        quantity: 3,
-        measurement: "mL"
+        name: "really long peppers with pepper sauce",
+        quantity: 12345,
+        measurement: "kilograms"
+      },
+      {
+        name: "pepper",
+        quantity: "1/2",
+        measurement: "tsp"
       }
+    ],
+    directions: [
+      "Pepper tomatoes"
     ]
   },
   {
@@ -59,6 +72,10 @@ export const recipes: Recipe[] = [
         quantity: 3,
         measurement: "mL"
       }
+    ],
+    directions: [
+      "Shuck oysters",
+      "Bop"
     ]
   }
 ];

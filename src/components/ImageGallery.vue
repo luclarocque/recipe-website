@@ -68,8 +68,8 @@ export default class ImageGallery extends Vue {
   color: rgb(32, 32, 32);
   -webkit-text-stroke: 1px;
   text-transform: uppercase;
-  transition-delay: 0.1s;
-  transition-duration: 0.15s;
+  // transition-delay: 0.1s;
+  transition-duration: 0.1s;
 
   width: 80%;
   text-align: center;

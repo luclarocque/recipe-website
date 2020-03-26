@@ -1,8 +1,27 @@
 <template>
   <div>
     <h1>{{ recipe.name }}</h1>
-    <div class="recipe-container">
-      <img class="recipe-image" :src="recipe.images[0]" />
+    <img class="recipe-image" :src="recipe.images[0]" />
+    <div class="ingredients-and-instructions">
+      <div class="block">
+        <h2 class="title-text">Ingredients</h2>
+        <table class="ingr-table">
+          <tr v-for="ingr in recipe.ingredients" :key="ingr.name">
+            <td width="120px" style="padding: 3px">{{ ingr.name }}</td>
+            <td>{{ ingr.quantity }} {{ ingr.measurement }}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="block">
+        <h2 class="title-text">Instructions</h2>
+        <ol class="instruc-list">
+          <li
+            style="margin: 12px;"
+            v-for="(line, index) in recipe.directions"
+            :key="index"
+          >{{ line }}</li>
+        </ol>
+      </div>
     </div>
   </div>
 </template>
@@ -14,27 +33,64 @@ import { Recipe } from "../types";
 export default {
   name: "Home",
   components: {},
-  // data: function() {
-  //   return {
-  //     recipe,
-  //   };
-  // },
-  // methods: {
-  // },
   computed: {
-    recipe() {
-      return recipes.filter(rec => rec.id === this.$route.params.id)[0];
+    recipe(): Recipe {
+      return recipes.filter(rec => rec.id === this.$route.params.id)[0]; // id passed in from router index.ts
     }
   }
 };
 </script>
 
-<style lang="less">
-.recipe-container {
-  display: flex;
+<style scoped lang="less">
+.recipe-image {
+  width: 300px;
 }
 
-.recipe-image {
-  width: 100%;
+.ingredients-and-instructions {
+  display: flex;
+  flex-wrap: wrap;
+  // flex-direction: column;
+  justify-content: center;
+}
+
+.title-text {
+  font-size: 20px;
+  text-align: center;
+}
+
+.ingredients-and-instructions .block {
+  width: 250px;
+  margin: 10px;
+  padding: 10px;
+  text-align: left;
+  border: 2px solid #2c3e50;
+  border-radius: 15px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ingr-table {
+  padding: 10px;
+  table-layout: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+tr { 
+  border: 1px solid rgb(49, 49, 49);
+  border: 1px solid rgba(49, 49, 49, 0.15);
+  border-width: 1px 0;
+}
+tr:first-child {
+  border-top: none;
+}
+tr:last-child {
+  border-bottom: none;
+}
+
+.instruc-list {
+  padding: 0px 0px 0px 6px;
+  margin: 0px;
 }
 </style>

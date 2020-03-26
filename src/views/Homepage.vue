@@ -34,7 +34,7 @@ function filterFoods(foodtag: FoodTag) {
 }
 
 // TODO: fix spacing between rows
-// TODO: fix jerking when selecting
+// TODO: fix jerking when selecting (scrollbar appearing)
 
 let currentSelection: FoodTag | null = null;
 
