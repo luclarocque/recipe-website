@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Recipeebs</h1>
     <div class="meal-button-container">
       <div v-for="(button, index) in buttons" :key="button.name">
         <button
@@ -110,8 +109,9 @@ export default {
 button {
   display: inline-block;
   border: none;
-  padding: 1em 1.5em;
-  margin: 0.3em;
+  margin: 5px;
+  // padding: 1em 1.5em;
+  // margin: 0.3em;
   text-decoration: none;
   background: white;
   // color: #ffffff;
@@ -126,14 +126,12 @@ button {
 
 .meal-button-container {
   display: flex;
-  align-items: baseline;
+  flex-wrap: wrap;
   justify-content: center;
-  // grid-template-rows: [1] 5em [2] 5em [3] 5em [4] 5em [5] 5em [6] 5em [7] 5em [8];
-  // grid-template-rows: [line1] 60px [line2];
 }
 
 .meal-button {
-  width: 132px;
+  // width: 132px;
   &:hover {
     font-weight: 900;
   }
@@ -146,16 +144,7 @@ button {
 }
 
 .meal-button-selected {
+  .meal-button;
   font-weight: 900;
-  width: 132px;
-  &:hover {
-    font-weight: 900;
-  }
-  &:focus {
-    outline: 1px solid #fff; // invisible outline
-  }
-  &:active {
-    transform: scale(1.08);
-  }
 }
 </style>

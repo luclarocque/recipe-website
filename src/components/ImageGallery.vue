@@ -60,7 +60,7 @@ export default class ImageGallery extends Vue {
   padding: 1px;
   color: #fff;
   width: auto;
-  height: 15em;
+  height: 200px;
 }
 
 .image-text {

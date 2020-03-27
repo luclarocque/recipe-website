@@ -7,8 +7,10 @@
         <h2 class="title-text">Ingredients</h2>
         <table class="ingr-table">
           <tr v-for="ingr in recipe.ingredients" :key="ingr.name">
-            <td width="120px" style="padding: 3px">{{ ingr.name }}</td>
-            <td>{{ ingr.quantity }} {{ ingr.measurement }}</td>
+            <td class="ingr-col1">{{ ingr.name }}</td>
+            <td class="ingr-col2">
+              {{ ingr.quantity }} {{ ingr.measurement }}
+            </td>
           </tr>
         </table>
       </div>
@@ -19,7 +21,9 @@
             style="margin: 12px;"
             v-for="(line, index) in recipe.directions"
             :key="index"
-          >{{ line }}</li>
+          >
+            {{ line }}
+          </li>
         </ol>
       </div>
     </div>
@@ -43,7 +47,8 @@ export default {
 
 <style scoped lang="less">
 .recipe-image {
-  width: 300px;
+  max-width: 100%;
+  // min-width: 300px;
 }
 
 .ingredients-and-instructions {
@@ -59,25 +64,27 @@ export default {
 }
 
 .ingredients-and-instructions .block {
-  width: 250px;
+  max-width: 97%;
+  min-width: 280px;
   margin: 10px;
   padding: 10px;
   text-align: left;
   border: 2px solid #2c3e50;
   border-radius: 15px;
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
+  font-size: 14px;
+  display: grid;
+  justify-content: center;
 }
 
 .ingr-table {
+  min-width: 160px;
   padding: 10px;
-  table-layout: fixed;
+  table-layout: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-tr { 
+tr {
   border: 1px solid rgb(49, 49, 49);
   border: 1px solid rgba(49, 49, 49, 0.15);
   border-width: 1px 0;
@@ -87,6 +94,14 @@ tr:first-child {
 }
 tr:last-child {
   border-bottom: none;
+}
+.ingr-col1 {
+  width: 120px;
+  padding: 3px;
+}
+.ingr-col2 {
+  width: auto;
+  padding: 3px;
 }
 
 .instruc-list {

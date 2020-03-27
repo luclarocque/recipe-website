@@ -21,7 +21,7 @@ export const recipes: Recipe[] = [
       }
     ],
     directions: [
-      "Shuck oysters",
+      "Shuck oysters using coasters to hoist the moist oyster cluster ",
       "Bop",
       "Bop again"
     ]
@@ -50,9 +50,7 @@ export const recipes: Recipe[] = [
         measurement: "tsp"
       }
     ],
-    directions: [
-      "Pepper tomatoes"
-    ]
+    directions: ["Pepper tomatoes"]
   },
   {
     name: "oyster bop",
@@ -73,9 +71,47 @@ export const recipes: Recipe[] = [
         measurement: "mL"
       }
     ],
+    directions: ["Shuck oysters", "Bop"]
+  },
+  {
+    name: "Homemade Brioche",
+    images: ["https://i.imgur.com/aS4TbEt.jpg"],
+    id: "3",
+    tags: [FoodTag.Breakfast, FoodTag.Snack],
+    ingredients: [
+      {
+        name: "Flour",
+        quantity: 3,
+        measurement: "cups"
+      },
+      {
+        name: "Water",
+        quantity: 125,
+        measurement: "mL"
+      },
+      {
+        name: "Baker's Yeast",
+        quantity: 1,
+        measurement: "tsp"
+      },
+      {
+        name: "Butter",
+        quantity: "1/4",
+        measurement: "cup"
+      },
+      {
+        name: "Salt",
+        quantity: "1",
+        measurement: "tsp"
+      }
+    ],
     directions: [
-      "Shuck oysters",
-      "Bop"
+      "Preheat the oven to 350F",
+      "Place the yeast into a large mixing bowl and then pour in the flour. It's very important to put the yeast in first to prevent it from touching the salt.",
+      "Add the salt on top of the flour",
+      "Add the water and melted butter and mix",
+      "Pour the mixture into a round baking pan",
+      "Bake for 35-40 minutes or until the brioche is a nice golden brown colour"
     ]
   }
 ];
