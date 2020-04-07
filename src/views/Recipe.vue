@@ -35,7 +35,8 @@ import recipes from "../assets/recipes";
 import { Recipe } from "../types";
 
 export default {
-  name: "Home",
+  name: "Recipe",
+  // TODO: create slideshow component instead of basic image
   components: {},
   computed: {
     recipe(): Recipe {
@@ -48,7 +49,6 @@ export default {
 <style scoped lang="less">
 .recipe-image {
   max-width: 100%;
-  // min-width: 300px;
 }
 
 .ingredients-and-instructions {
@@ -64,7 +64,7 @@ export default {
 }
 
 .ingredients-and-instructions .block {
-  max-width: 97%;
+  max-width: 95%;
   min-width: 280px;
   margin: 10px;
   padding: 10px;

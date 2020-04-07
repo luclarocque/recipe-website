@@ -101,7 +101,7 @@ export const recipes: Recipe[] = [
       },
       {
         name: "Salt",
-        quantity: "1",
+        quantity: "1/2",
         measurement: "tsp"
       }
     ],
@@ -112,6 +112,71 @@ export const recipes: Recipe[] = [
       "Add the water and melted butter and mix",
       "Pour the mixture into a round baking pan",
       "Bake for 35-40 minutes or until the brioche is a nice golden brown colour"
+    ]
+  },
+  {
+    name: "Proja",
+    images: [
+      "https://recepti.odados.com/images/cache/6450d7e0c56fc755e0a063844aecc216_w670_h436_cp.jpg"
+    ],
+    id: "4",
+    tags: [FoodTag.Breakfast, FoodTag.Lunch, FoodTag.Snack],
+    ingredients: [
+      {
+        name: "Flour",
+        quantity: 1,
+        measurement: "cup"
+      },
+      {
+        name: "Corn Meal",
+        quantity: 1,
+        measurement: "cup"
+      },
+      {
+        name: "Baking Powder",
+        quantity: "1/2",
+        measurement: "tsp"
+      },
+      {
+        name: "Salt",
+        quantity: "1/2",
+        measurement: "tsp"
+      },
+      {
+        name: "Eggs",
+        quantity: "2",
+        measurement: ""
+      },
+      {
+        name: "Milk",
+        quantity: 1,
+        measurement: "cup"
+      },
+      {
+        name: "Water",
+        quantity: 1,
+        measurement: "cup"
+      },
+      {
+        name: "Extra Virgin Olive Oil",
+        quantity: "1/2",
+        measurement: "cup"
+      },
+      {
+        name: "Cheese",
+        quantity: "3/4",
+        measurement: "cup"
+      }
+    ],
+    directions: [
+      "Preheat oven to 410F",
+      "Place the dry ingredients (flour, corn meal, baking powder, salt) into a large mixing bowl",
+      "Mix",
+      "Add the eggs and mix",
+      "Add the milk and water and mix. Note: add liquids a little bit at a time while mixing to reduce clumping.",
+      "Pour in the olive oil and mix in the cheese (cubed)",
+      "Line a small rectangular baking pan with parchment paper, and pour the mixture into the pan",
+      "Bake for 35-40 minutes or until a nice golden brown colour"
     ]
   }
 ];

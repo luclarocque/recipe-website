@@ -25,10 +25,16 @@ const routes = [
     component: Homepage
   },
   {
-    path: "/:id", // creates variable id from path "/{ id }" and passes to Recipe.vue
+    path: "/recipe/:id", // creates variable id from path "/{ id }" and passes to Recipe.vue
     name: "Recipe",
     component: () =>
       import(/* webpackChunkName: "recipe" */ "../views/Recipe.vue")
+  },
+  {
+    path: "/create", // creates variable id from path "/{ id }" and passes to Recipe.vue
+    name: "Create",
+    component: () =>
+      import(/* webpackChunkName: "recipe" */ "../views/UploadForm.vue")
   }
 ];
 

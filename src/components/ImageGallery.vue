@@ -36,7 +36,7 @@ export default class ImageGallery extends Vue {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
+  // TODO: fix so that the last item (if odd # of items) is left-aligned
   width: 100%;
   height: 100%;
   overflow-y: scroll;
@@ -59,21 +59,22 @@ export default class ImageGallery extends Vue {
 .image {
   padding: 1px;
   color: #fff;
-  width: auto;
+  // width: auto;
+  width: 150px;
   height: 200px;
+  object-fit: cover;
 }
 
 .image-text {
-  font-size: 1.3em;
   color: rgb(32, 32, 32);
   -webkit-text-stroke: 1px;
   text-transform: uppercase;
   // transition-delay: 0.1s;
   transition-duration: 0.1s;
 
-  width: 80%;
+  width: 85%;
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1.2em;
   position: absolute;
   overflow: hidden;
   top: 50%;

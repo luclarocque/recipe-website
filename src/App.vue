@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <router-link :to="{ name: 'Home' }">
-      <button class="home-title">Recipeebs</button>
-    </router-link>
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> | 
-      <router-link to="/home">Home</router-link>
-    </div> -->
+    <div class="nav-container">
+      <router-link :to="{ name: 'Home' }">
+        <button class="home-title">Recipeebs</button>
+      </router-link>
+      <router-link :to="{ name: 'Create' }">
+        <button class="create-btn">Create Recipe</button>
+      </router-link>
+    </div>
+    <div id="nav"></div>
     <router-view />
   </div>
 </template>
@@ -24,8 +25,6 @@
 }
 
 #nav {
-  padding: 30px;
-
   a {
     font-weight: bold;
     color: #2c3e50;
@@ -36,6 +35,28 @@
   }
 }
 
+button {
+  display: inline-block;
+  border: none;
+  margin: 5px;
+  // padding: 1em 1.5em;
+  // margin: 0.3em;
+  text-decoration: none;
+  background: white;
+  // color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1.1em;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+}
+
+.nav-container {
+  display: grid;
+}
+
 .home-title {
   border: none;
   background-color: inherit;
@@ -43,9 +64,22 @@
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
-  display: inline-block;
+  // display: inline-block;
   &:focus {
     outline: 1px solid #fff; // invisible outline
+  }
+}
+
+.create-btn {
+  border: 1px solid black;
+  border-radius: 9px;
+  background-color: rgb(234, 255, 175);
+  padding: 7px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  &:focus {
+    outline: 0px solid #fff; // invisible outline
   }
 }
 </style>

@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import ImageGallery from "@/components/ImageGallery.vue";
-import recipes from "../assets/recipes";
+import recipes from "@/assets/recipes";
 import {
   FoodTag,
   MenuButton,
@@ -26,14 +26,8 @@ import {
   BasicPic
 } from "../types";
 
-function filterFoods(foodtag: FoodTag) {
-  return recipes.filter(recipe => {
-    return recipe.tags.includes(foodtag);
-  });
-}
-
 // TODO: fix spacing between rows
-// TODO: fix jerking when selecting (scrollbar appearing)
+// TODO: make scrollbar invisible?
 
 let currentSelection: FoodTag | null = null;
 
@@ -60,6 +54,12 @@ const buttons: MenuButton[] = [
   }
 ];
 
+function filterFoods(foodtag: FoodTag) {
+  return recipes.filter(recipe => {
+    return recipe.tags.includes(foodtag);
+  });
+}
+
 function recipeToBasicPic(recipe: Recipe): BasicPic {
   return {
     url: recipe.images[0],
@@ -85,7 +85,7 @@ export default {
     changeSelection: function(foodtag: FoodTag) {
       currentSelection = foodtag;
       const filteredRecipes =
-        currentSelection !== null ? filterFoods(currentSelection) : recipes;
+        currentSelection === null ? recipes : filterFoods(currentSelection);
       this.basicpics = filteredRecipes.map(recipeToBasicPic);
       this.buttons.forEach(button => {
         button.class =
@@ -101,29 +101,7 @@ export default {
 };
 </script>
 
-<style lang="less">
-// body {
-//   overflow: hidden;  // uncomment to
-// }
-
-button {
-  display: inline-block;
-  border: none;
-  margin: 5px;
-  // padding: 1em 1.5em;
-  // margin: 0.3em;
-  text-decoration: none;
-  background: white;
-  // color: #ffffff;
-  font-family: sans-serif;
-  font-size: 1.1em;
-  cursor: pointer;
-  text-align: center;
-  transition: background 250ms ease-in-out, transform 150ms ease;
-  // -webkit-appearance: none;
-  // -moz-appearance: none;
-}
-
+<style scoped lang="less">
 .meal-button-container {
   display: flex;
   flex-wrap: wrap;
