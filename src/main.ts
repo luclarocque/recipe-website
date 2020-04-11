@@ -2,13 +2,13 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-// import firebase from "firebase"
+import * as firebase from "firebase/app";
+import "firebase/storage";
+import firebaseConfig from "./main-fb-config"
 
 Vue.config.productionTip = false;
 
-// firebase.initializeApp({
-
-// })
+firebase.initializeApp(firebaseConfig);
 
 new Vue({
   router,

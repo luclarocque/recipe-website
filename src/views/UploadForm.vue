@@ -3,16 +3,16 @@
     <h1>Create Your Recipe</h1>
     <div>
       <p>Upload an image</p>
-      <input type="file" @change="previewImage" accept="image/*" />
+      <input type="file" @change="previewImage" accept="image" />
     </div>
     <div>
       <p>
-        Progress: {{ uploadValue.toFixed() + "%" }}
-        <progress id="progress" :value="uploadValue" max="100"></progress>
+        Progress: {{ uploadPercent.toFixed() + "%" }}
+        <progress id="progress" :value="uploadPercent" max="100"></progress>
       </p>
     </div>
     <div v-if="imageData != null">
-      <img class="preview" :src="picture" />
+      <img class="preview" :src="picUrl" />
       <br />
       <button @click="onUpload">Upload</button>
     </div>
@@ -20,38 +20,46 @@
 </template>
 
 <script lang="ts">
-// import firebase from 'firebase';
+import firebase from "firebase";
 
 export default {
   name: "Create",
   data() {
     return {
       imageData: null,
-      picture: null,
-      uploadValue: 0
+      picUrl: "",
+      uploadPercent: 0,
+      recipe: {} //TODO: create recipe object from user input and store in database
     };
   },
   methods: {
-    //   previewImage(event) {
-    //     this.uploadValue=0;
-    //     this.picture=null;
-    //     this.imageData = event.target.files[0];
-    //   },
-    //   onUpload(){
-    //     this.picture = null;
-    //     const storageRef = firebase.storage().ref(`${this.imageData.name}`).put(this.imageData);
-    //     storageRef.on(`state_changed`, snapshot => {
-    //       this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
-    //     }, error => {console.log(error.message)},
-    //     () => {this.uploadValue = 100;
-    //       storageRef.snapshot.ref.getDownloadURL().then((url) => {
-    //         this.picture = url;
-    //       });
-    //     }
-    //     );
-    //   }
+    previewImage(event) {
+      this.uploadPercent = 0;
+      this.picUrl = "";
+      this.imageData = event.target.files[0];
+    },
     onUpload() {
-      return;
+      this.picUrl = "";
+      const storageRef = firebase
+        .storage()
+        .ref(`images/${this.imageData.name}`)
+        .put(this.imageData);
+      storageRef.on(
+        `state_changed`,
+        snapshot => {
+          this.uploadPercent =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        },
+        error => {
+          // console.log(error.message);
+        },
+        () => {
+          this.uploadPercent = 100;
+          storageRef.snapshot.ref.getDownloadURL().then(url => {
+            this.picUrl = url;
+          });
+        }
+      );
     }
   }
 };

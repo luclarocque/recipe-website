@@ -37,7 +37,6 @@ import { Recipe } from "../types";
 export default {
   name: "Recipe",
   // TODO: create slideshow component instead of basic image
-  components: {},
   computed: {
     recipe(): Recipe {
       return recipes.filter(rec => rec.id === this.$route.params.id)[0]; // id passed in from router index.ts
@@ -79,7 +78,7 @@ export default {
 .ingr-table {
   min-width: 160px;
   padding: 10px;
-  table-layout: auto;
+  // table-layout: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,12 +95,12 @@ tr:last-child {
   border-bottom: none;
 }
 .ingr-col1 {
-  width: 120px;
-  padding: 3px;
+  width: 140px;
+  padding: 4px;
 }
 .ingr-col2 {
   width: auto;
-  padding: 3px;
+  padding: 4px;
 }
 
 .instruc-list {
