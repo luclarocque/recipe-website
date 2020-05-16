@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import firebase from "firebase";
 
 export default {
@@ -39,27 +39,29 @@ export default {
       this.imageData = event.target.files[0];
     },
     onUpload() {
-      this.picUrl = "";
-      const storageRef = firebase
-        .storage()
-        .ref(`images/${this.imageData.name}`)
-        .put(this.imageData);
-      storageRef.on(
-        `state_changed`,
-        snapshot => {
-          this.uploadPercent =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        },
-        error => {
-          // console.log(error.message);
-        },
-        () => {
-          this.uploadPercent = 100;
-          storageRef.snapshot.ref.getDownloadURL().then(url => {
-            this.picUrl = url;
-          });
-        }
-      );
+      if (this.imageData) {
+        this.picUrl = "";
+        const storageRef = firebase
+          .storage()
+          .ref(`images/${this.imageData.name}`)
+          .put(this.imageData);
+        storageRef.on(
+          `state_changed`,
+          snapshot => {
+            this.uploadPercent =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          },
+          error => {
+            // console.log(error.message);
+          },
+          () => {
+            this.uploadPercent = 100;
+            storageRef.snapshot.ref.getDownloadURL().then(url => {
+              this.picUrl = url;
+            });
+          }
+        );
+      }
     }
   }
 };

@@ -16,6 +16,7 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue";
 import ImageGallery from "@/components/ImageGallery.vue";
 import recipes from "@/assets/recipes";
 import {
@@ -27,7 +28,7 @@ import {
 } from "../types";
 
 // TODO: fix spacing between rows
-// TODO: make scrollbar invisible?
+// TODO: make scrollbar invisible to prevent "jolting" when changing selection?
 
 let currentSelection: FoodTag | null = null;
 
@@ -54,7 +55,7 @@ const buttons: MenuButton[] = [
   }
 ];
 
-function filterFoods(foodtag: FoodTag) {
+function filterFoods(foodtag: FoodTag): Recipe[] {
   return recipes.filter(recipe => {
     return recipe.tags.includes(foodtag);
   });
@@ -68,21 +69,20 @@ function recipeToBasicPic(recipe: Recipe): BasicPic {
   };
 }
 
-export default {
+export default Vue.extend({
   name: "Home",
   components: {
     ImageGallery
   },
   data: function() {
     return {
-      basicpics: recipes.map(recipeToBasicPic),
       FoodTag,
       buttons
       // TODO: find different way to pass in FoodTag
     };
   },
   methods: {
-    changeSelection: function(foodtag: FoodTag) {
+    changeSelection(foodtag: FoodTag) {
       currentSelection = foodtag;
       const filteredRecipes =
         currentSelection === null ? recipes : filterFoods(currentSelection);
@@ -94,11 +94,11 @@ export default {
             : MenuButtonClass.Default;
       });
     }
+  },
+  computed: {
+    basicpics: () => recipes.map(recipeToBasicPic)
   }
-  // computed: {
-  //
-  // }
-};
+});
 </script>
 
 <style scoped lang="less">

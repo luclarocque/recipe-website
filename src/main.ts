@@ -4,7 +4,7 @@ import router from "./router";
 import store from "./store";
 import * as firebase from "firebase/app";
 import "firebase/storage";
-import firebaseConfig from "./main-fb-config"
+import firebaseConfig from "./main-fb-config";
 
 Vue.config.productionTip = false;
 

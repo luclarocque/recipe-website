@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ recipe.name }}</h1>
+    <h1 class="recipe-title">{{ recipe.name }}</h1>
     <img class="recipe-image" :src="recipe.images[0]" />
     <div class="ingredients-and-instructions">
       <div class="block">
@@ -31,23 +31,30 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue";
 import recipes from "../assets/recipes";
 import { Recipe } from "../types";
 
-export default {
+export default Vue.extend({
   name: "Recipe",
   // TODO: create slideshow component instead of basic image
   computed: {
     recipe(): Recipe {
-      return recipes.filter(rec => rec.id === this.$route.params.id)[0]; // id passed in from router index.ts
+      return recipes.filter(
+        (rec: Recipe) => rec.id === this.$route.params.id
+      )[0]; // id passed in from router index.ts
     }
   }
-};
+});
 </script>
 
 <style scoped lang="less">
 .recipe-image {
   max-width: 100%;
+}
+
+.recipe-title {
+  padding: 0px 8px;
 }
 
 .ingredients-and-instructions {
@@ -65,18 +72,18 @@ export default {
 .ingredients-and-instructions .block {
   max-width: 95%;
   min-width: 280px;
-  margin: 10px;
+  margin: 2px 5px;
   padding: 10px;
   text-align: left;
   border: 2px solid #2c3e50;
   border-radius: 15px;
-  font-size: 14px;
+  font-size: 16px;
   display: grid;
   justify-content: center;
 }
 
 .ingr-table {
-  min-width: 160px;
+  // min-width: 160px;
   padding: 10px;
   // table-layout: auto;
   display: flex;
@@ -95,8 +102,8 @@ tr:last-child {
   border-bottom: none;
 }
 .ingr-col1 {
-  width: 140px;
-  padding: 4px;
+  width: 150px;
+  padding: 4px 15px 4px 4px;
 }
 .ingr-col2 {
   width: auto;
@@ -104,7 +111,7 @@ tr:last-child {
 }
 
 .instruc-list {
-  padding: 0px 0px 0px 6px;
+  padding: 0px 0px 0px 10px;
   margin: 0px;
 }
 </style>

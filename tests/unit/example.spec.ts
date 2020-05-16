@@ -1,12 +1,14 @@
 import { shallowMount } from "@vue/test-utils";
-import HelloWorld from "@/components/HelloWorld.vue";
+import ImageGallery from "@/components/ImageGallery.vue";
+import { BasicPic } from "src/types";
 
-describe("HelloWorld.vue", () => {
-  it("renders props.msg when passed", () => {
-    const msg = "new message";
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg }
+describe("ImageGallery.vue", () => {
+  it("renders props.images when passed", () => {
+    const images: BasicPic[] = [];
+    const wrapper = shallowMount(ImageGallery, {
+      propsData: { images }
     });
-    expect(wrapper.text()).toMatch(msg);
+    console.log(wrapper);
+    // expect(wrapper.text()).toBe(images);
   });
 });
